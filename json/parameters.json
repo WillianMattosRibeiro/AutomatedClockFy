@@ -1,0 +1,4 @@
+{
+  "api_address": "https://api.clockify.me/api/v1",
+  "time_entry_base_path": "/workspaces/5c33ad23b079874ebdda26cf/time-entries"
+}

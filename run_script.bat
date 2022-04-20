@@ -1,0 +1,1 @@
+python "python\clockfy_time_entry.py"
