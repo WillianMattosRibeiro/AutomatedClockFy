@@ -5,17 +5,16 @@ from clockfy_time_entry import ClockfyTimeEntry
 
 def call_time_entry():
     global lista_valores
+    from datetime import datetime
     args = {
         "description": lista_valores["description"].get(),
-        "projeto": lista_valores["projeto"].get(),
+        "projeto": lista_valores["project"].get(),
         "tags": lista_valores["tags"].get(),
         "billable": lista_valores["billable"].get(),
-        "hora_inicio": lista_valores["hora_inicio"].get(),
-        "hora_fim": lista_valores["hora_fim"].get(),
-        "data": lista_valores["data"].get()
+        "start_hour": lista_valores["start_hour"].get(),
+        "end_hour": lista_valores["end_hour"].get(),
+        "date": datetime.strptime(lista_valores["date"].get_date(), '%m/%d/%y').strftime("%Y-%m-%d")
     }
-
-    print(args)
 
     cte = ClockfyTimeEntry()
     cte.post_data_to_clockfy(args)
@@ -24,23 +23,40 @@ def call_time_entry():
     master.destroy()
 
 
-lista_campos = ['description', 'projeto', 'tags', 'billable', 'hora_inicio', 'hora_fim', 'data']
+lista_campos = ['description', 'project', 'tags', 'billable', 'start_hour', 'end_hour', 'date']
 lista_valores = {}
 
 master = Tk()
 master.title("Automated Clockfy")
-master.minsize(280, 250)
-master.maxsize(280, 250)
+master.resizable(None, None)
+fone = Frame(master)
+ftwo = Frame(master)
+
+fone.pack(pady=10)
+ftwo.pack(pady=10)
 
 row = 0
 for campo in lista_campos:
-    v = StringVar(master, value=check_value(campo))
-    Label(master, text=campo).grid(row=row, padx=5)
-    field = Entry(master, textvariable=v, width=30)
-    field.grid(row=row, column=1, pady=5)
-    lista_valores[campo] = field
+    if campo == "date":
+        from tkcalendar import Calendar
+        from datetime import datetime
+        field = Calendar(
+            ftwo,
+            selectmode="day",
+            year=datetime.now().year,
+            month=datetime.now().month,
+            day=datetime.now().day
+        )
+        field.grid(row=row, column=1, pady=5)
+        lista_valores[campo] = field
+    else:
+        v = StringVar(fone, value=check_value(campo))
+        Label(fone, text=campo).grid(row=row, padx=5)
+        field = Entry(fone, textvariable=v, width=30)
+        field.grid(row=row, column=1, pady=5)
+        lista_valores[campo] = field
     row += 1
 
-Button(master, text='Enviar', command=call_time_entry).grid(row=row, column=1, pady=5)
+Button(ftwo, text='Enviar', command=call_time_entry).grid(row=row, column=1, pady=5)
 
 mainloop()
