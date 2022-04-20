@@ -23,6 +23,7 @@ def call_time_entry():
     print('quitting')
     master.destroy()
 
+
 lista_campos = ['description', 'projeto', 'tags', 'billable', 'hora_inicio', 'hora_fim', 'data']
 lista_valores = {}
 
