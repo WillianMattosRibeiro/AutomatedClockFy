@@ -4,4 +4,4 @@ As every good programmer knows, the more automated the better. That's why this s
 
 ![img.png](images/img.png)
 
-Edit the fields, click submit, and you're done. Never have problems with unposted hours on clockfy again.
+Set your credentials in credentials.json, Edit the fields, click submit, and you're done. Never have problems with unposted hours on clockfy again.

@@ -1,1 +1,1 @@
-python "python\clockfy_time_entry.py"
+python "python\main.py"
