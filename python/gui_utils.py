@@ -1,5 +1,4 @@
 def check_value(string):
-    # 'description', 'projeto', 'tags', 'billable', 'hora_inicio', 'hora_fim', 'data'
     if string == 'description':
         return "Atividades de Projeto e Reunião"
     if string == 'projeto':

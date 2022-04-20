@@ -3,7 +3,6 @@ from clockfy_utils import get_tags, get_projects, get_user, set_time_entry
 
 
 def get_tags_name(base_url, headers, workspace):
-    # - CARREGAR INFORMAÇÔES DE TAGS
     print("capturando tags: ")
     tag_name = "Reunião"
     tags = get_tags(base_url, headers, workspace, tag_name)
@@ -22,7 +21,6 @@ def get_user_id(base_url, headers):
 
 
 def get_project_id(base_url, headers, workspace, user_id):
-    # - CARREGAR INFORMAÇÔES DE PROJETO
     print("capturando projetos: ")
     projects = get_projects(base_url, headers, workspace, user_id=user_id, user_status="ACTIVE")
     project_id = None
