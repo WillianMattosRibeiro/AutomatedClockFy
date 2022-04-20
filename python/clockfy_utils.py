@@ -1,8 +1,11 @@
-import requests, json
+import requests
+import json
+
 
 def get_user(api_url, headers):
     r = requests.get(url=f"{api_url}/user", headers=headers)
     return json.loads(r.content)
+
 
 def get_tags(api_url, headers, workspace_id, tag_name=None):
     params = {"page-size": 2000}
@@ -17,8 +20,8 @@ def get_tags(api_url, headers, workspace_id, tag_name=None):
 
     return json.loads(r.content)
 
-def get_projects(api_url, headers, workspace_id, user_id, user_status=None):
 
+def get_projects(api_url, headers, workspace_id, user_id, user_status=None):
     params = {"page-size": 5000,
               "users": [user_id]}
 
@@ -31,17 +34,15 @@ def get_projects(api_url, headers, workspace_id, user_id, user_status=None):
                      )
     return json.loads(r.content)
 
+
 def set_time_entry(url, headers, workspace_id, date, hour, description, project_id, tags, debbug=None):
     import json
 
-    # TODO: Adicionar parametro billable como opcional
-    # TODO: Setar data e hora como parametro configuravel
-
     time_entry_settings = {
-        "start": f"{date}T{hour['inicio']}Z",
+        "start": f"{date}T{hour['start']}Z",
         "description": description,
         "projectId": project_id,
-        "end": f"{date}T{hour['fim']}Z",
+        "end": f"{date}T{hour['end']}Z",
         "tagIds": tags
     }
 
