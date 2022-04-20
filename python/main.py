@@ -57,6 +57,6 @@ for campo in lista_campos:
         lista_valores[campo] = field
     row += 1
 
-Button(ftwo, text='Enviar', command=call_time_entry).grid(row=row, column=1, pady=5)
+Button(ftwo, text='Send', command=call_time_entry).grid(row=row, column=1, pady=5)
 
 mainloop()
