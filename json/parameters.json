@@ -1,5 +1,5 @@
 {
   "API_URL": "https://api.clockify.me/api/v1",
   "TIME_ENTRY_BASE_PATH": "/workspaces/{workspace}/time-entries",
-  "CREDENTIALS_PATH": "./credentials/credentials.json"
+  "CREDENTIALS_PATH": "credentials/credentials.json"
 }

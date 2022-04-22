@@ -1,5 +1,6 @@
 from utils.will_utils import get_json
 from clockfy_utils import get_tags, get_projects, get_user, set_time_entry
+import os
 
 
 def get_tags_name(base_url, headers, workspace):
@@ -32,9 +33,10 @@ def get_project_id(base_url, headers, workspace, user_id):
 
 class ClockfyTimeEntry:
     def __init__(self):
-        self.path_parameters = "./json/parameters.json"
+        self.root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/")
+        self.path_parameters = f"{self.root_dir}/json/parameters.json"
         self.parameters = get_json(self.path_parameters)
-        self.credentials_file = get_json(self.parameters["CREDENTIALS_PATH"])
+        self.credentials_file = get_json(f"{self.root_dir}/{self.parameters['CREDENTIALS_PATH']}")
         self.base_url = self.parameters["API_URL"]
         time_entry_path = self.parameters["TIME_ENTRY_BASE_PATH"]
         self.time_entry_path = time_entry_path.replace("{workspace}", self.credentials_file["workspace"])
