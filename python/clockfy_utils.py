@@ -1,6 +1,16 @@
 import requests
 import json
 
+def get_time_entries(api_url, headers, workspace_id, user_id):
+    r = requests.get(url=f"{api_url}/workspaces/{workspace_id}/user/{user_id}/time-entries",
+                     headers=headers
+                     )
+    return json.loads(r.content)
+
+def get_workspaces(api_url, headers):
+    r = requests.get(url=f"{api_url}/workspaces", headers=headers)
+    return json.loads(r.content)
+
 
 def get_user(api_url, headers):
     r = requests.get(url=f"{api_url}/user", headers=headers)
@@ -8,7 +18,8 @@ def get_user(api_url, headers):
 
 
 def get_tags(api_url, headers, workspace_id, tag_name=None):
-    params = {"page-size": 2000}
+    params = {"page-size": 5000,
+              "archived": "false"}
 
     if tag_name:
         params["name"] = tag_name
@@ -45,6 +56,8 @@ def set_time_entry(url, headers, workspace_id, date, hour, description, project_
         "end": f"{date}T{hour['end']}Z",
         "tagIds": tags
     }
+
+    print(time_entry_settings)
 
     data = json.dumps(time_entry_settings)
     r = requests.post(url=f"{url}/workspaces/{workspace_id}/time-entries", data=data, headers=headers)
