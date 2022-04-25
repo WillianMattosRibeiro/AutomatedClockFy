@@ -1,4 +1,4 @@
-# AutomatedClockFy
+## AutomatedClockFy
 
 As every good programmer knows, the more automated the better. That's why this small private project was started to launch clockfy hours in an "automated" way.
 
