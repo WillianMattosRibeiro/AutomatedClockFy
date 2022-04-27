@@ -13,3 +13,7 @@ Next Steps features:
 - Improvement in "start_hour" and "end_hour" field (maybe)
 - Possible Improvements on GUI
 - Use instructions on documents
+- Improve the conda actvate execution abstraction
+- Update Time Entry feature
+- Scroll Bar on tags (DONE)
+- Get Projects and Enterprises on "Projects" combobox

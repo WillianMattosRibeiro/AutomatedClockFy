@@ -1,5 +1,6 @@
 from gui_utils import check_value
 from tkinter import *
+from tkinter import ttk
 from clockfy_time_entry import ClockfyTimeEntry
 import os
 
@@ -7,14 +8,15 @@ cte = ClockfyTimeEntry()
 listbox = None
 
 
-def callback_projects(selection):
+def set_project():
     for project in cte.projects_list:
-        if project["name"] == selection:
+        if project["name"] == project_box.get():
             lista_valores["project"] = project["id"]
             break
 
 
-def call_add_tag(selection):
+def call_add_tag():
+    selection = tag_box.get()
     for tag in cte.tags_list:
         if tag["name"] == selection:
             lista_valores["tags"].append(tag["id"])
@@ -30,6 +32,7 @@ def call_remove_tag():
 def call_time_entry():
     global lista_valores
     from datetime import datetime
+    set_project()
     args = {
         "description": lista_valores["description"].get(),
         "project": lista_valores["project"],
@@ -68,32 +71,34 @@ for campo in lista_campos:
         from tkcalendar import Calendar
         from datetime import datetime
 
-        field = Calendar(
+        calendar = Calendar(
             ftwo,
             selectmode="day",
             year=datetime.now().year,
             month=datetime.now().month,
             day=datetime.now().day
         )
-        field.grid(row=row, column=1, pady=5)
-        lista_valores[campo] = field
+        calendar.grid(row=row, column=1, pady=5)
+        lista_valores[campo] = calendar
     elif campo == "project":
         Label(fone, text=campo).grid(row=row, padx=5)
         project_list_names = [str(project["name"]) for project in cte.projects_list]
         option_value = StringVar(fone, value=project_list_names[0])
         option_value.set(project_list_names[0])
-        field = OptionMenu(fone, option_value, *project_list_names, command=callback_projects)
-        field.grid(row=row, column=1, pady=5)
+        project_box = ttk.Combobox(fone, textvariable=option_value, values=project_list_names)
+        project_box.grid(row=row, column=1, pady=5)
     elif campo == "tags":
         Label(fone, text=campo).grid(row=row, padx=5)
         tag_list_names = [str(tag["name"]) for tag in cte.tags_list]
 
         option_value = StringVar(fone, value=tag_list_names[0])
         option_value.set(tag_list_names[0])
-        field = OptionMenu(fone, option_value, *tag_list_names, command=call_add_tag)
-        field.grid(row=row, column=1, pady=5)
+        tag_box = ttk.Combobox(fone, textvariable=option_value, values=tag_list_names)
+        # field = OptionMenu(fone, option_value, *tag_list_names, command=call_add_tag)
+        tag_box.grid(row=row, column=1, pady=5)
 
-        Button(fone, text='Clear Tags', command=call_remove_tag).grid(row=row, column=3, pady=5)
+        Button(fone, text='Add Tag', command=call_add_tag).grid(row=row, column=3, pady=5)
+        Button(fone, text='Clear Tags', command=call_remove_tag).grid(row=row, column=4, pady=5)
 
         row += 1
         listbox = Listbox(fone)
