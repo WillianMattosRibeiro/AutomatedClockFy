@@ -19,3 +19,4 @@ Next Steps features:
 - Get Projects and Enterprises on "Projects" combobox
 - Show "invalid tag name" message while typing tag name
 - Show "invalid project name" message while typing project name
+- change billable button as checkbox
