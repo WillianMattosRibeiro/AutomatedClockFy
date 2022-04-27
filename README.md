@@ -17,3 +17,5 @@ Next Steps features:
 - Update Time Entry feature
 - Scroll Bar on tags (DONE)
 - Get Projects and Enterprises on "Projects" combobox
+- Show "invalid tag name" message while typing tag name
+- Show "invalid project name" message while typing project name
