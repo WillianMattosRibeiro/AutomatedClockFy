@@ -13,3 +13,5 @@ Next Steps features:
 - Improvement in "start_hour" and "end_hour" field (maybe)
 - Possible Improvements on GUI
 - Use instructions on documents
+- Checkbox recorrente
+- Opção de escolher quais os parametros default (parametros default configuraveis)
